@@ -7,6 +7,11 @@ You can now do facebook and instagram account bruteforce, by saying 'facebook br
 
 Usage:
 
+run the script by typing in cmd:
+cd /path/to/the/file
+pip install -r requirements.txt
+python main.py
+
 try to say 'get server ip' to get ip adress of host(eg: google.com) 
 'get website source code' to get the header of any webpage(eg:http://example.com) 
 'get system info' to get all system stats and network speed 
