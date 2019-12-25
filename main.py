@@ -250,6 +250,31 @@ def get_full_info():
         check_network(args)
 
 
+def subdomain_scanner():
+     import requests
+     os.system('cls')
+     print("Subdomain scanner lauch at", date, "on", platform.system(), "by", username)
+     speak_text_cmd("Subdomain scanner lauch at" + date + "on" + platform.system() + "by" + username)
+     print(colored("What is the target(eg: google.com): ", 'blue'))
+     speak_text_cmd("What is the target ?")
+     domain = input()
+     print(colored("Domain set to " + domain, 'blue'))
+     speak_text_cmd("Domain set to " + domain)
+     print(colored("starting...", 'blue'))
+     speak_text_cmd("starting")
+     file = open("subdomains.txt")
+     content = file.read()
+     subdomains = content.splitlines()
+     for subdomain in subdomains:
+          url = f"http://{subdomain}.{domain}"
+          try:
+               requests.get(url)
+          except requests.ConnectionError:
+               pass
+          else:
+               print("[+] Discovered subdomain:", url)
+
+
 def ddos_attack():
      os.system('python ddos.py')
 
@@ -322,7 +347,7 @@ def manual_mode():
           elif 'voice control mode' in menu_opt:
                print(colored(": Do you want to enter voice control mode ? y/n", 'blue'))
                speak_text_cmd("Do you want to enter voice control mode ? yes or no")
-               voice_control_opt = input(":")
+               voice_control_opt = input(": ")
                if voice_control_opt == 'y':
                     voice_control_mode()
                elif voice_control_opt == 'n':
@@ -355,6 +380,9 @@ def manual_mode():
                continue
           elif 'instagram bruteforce' in menu_opt:
                instagram_attack()
+               continue
+          elif 'subdomain scanner' in menu_opt:
+               subdomain_scanner()
                continue
 
 
@@ -433,6 +461,9 @@ def voice_control_mode():
                continue
           elif 'instagram bruteforce' in voice_note:
                instagram_attack()
+               continue
+          elif 'subdomain scanner' in voice_note:
+               subdomain_scanner()
                continue
           else:
                print(colored(": No command detected, do you want to enter manual control mode ? y/n", 'blue'))
