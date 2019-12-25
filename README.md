@@ -18,6 +18,7 @@ try to say 'get server ip' to get ip adress of host(eg: google.com)
 'ddos attack' to start a ddos attack using Memcrashed DDos
 'instagram bruteforce' to bruteforce instagram account
 'facebook bruteforce' to bruteforce facebook account
+'subdomain scanner' to start subdomain scanner tool
 
 If you want to add more command, it would be great if you contact me and be part of the contributor :)
 
