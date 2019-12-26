@@ -1,7 +1,3 @@
-# Date: 12/29/2018
-# Author: Mohamed
-# Description: Instagram bruter
-
 from sys import exit
 from os.path import exists
 from lib.bruter import Bruter
