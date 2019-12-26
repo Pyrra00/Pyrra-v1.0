@@ -34,7 +34,6 @@ import argparse
 
 
 
-date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 username = getpass.getuser()
 #system = platform.system()
 
@@ -64,8 +63,8 @@ def speak_text_cmd(cmd):
     engine.runAndWait()
 
 def get_server_ip():
-     print(": IP scanner launch at" , date, "on", platform.system(), "by", username)
-     speak_text_cmd('IP scanner launch at' + date + 'on' + platform.system() + 'by' + username)
+     print(": IP scanner launch at" , datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd('IP scanner launch at' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + 'on' + platform.system() + 'by' + username)
      print(colored(": What is the target ?", 'blue'))
      speak_text_cmd("What is the target ?")
      host = input(": ")
@@ -77,13 +76,13 @@ def get_server_ip():
      ip = socket.gethostbyname(host)
      print(colored(": the IP adress of " + host + " is " + ip, 'green'))
      speak_text_cmd('The IP adress of the target is: ' + ip)
-     print(": IP scanner stop at " , date, "on", platform.system(), "by", username)
-     speak_text_cmd("IP scanner stop at " + date + "on" + platform.system() + "by" + username)
+     print(": IP scanner stop at " , datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("IP scanner stop at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
 
 def get_website_response_code():
      import requests
-     print(": website response program launch at " , date, "on", platform.system(), "by", username)
-     speak_text_cmd("website response program launch at " + date + "on" + platform.system() + "by" + username)
+     print(": website response program launch at " , datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("website response program launch at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
      print(colored(": What is the target ?", 'blue'))
      speak_text_cmd("What is the target ?")
      target = input()
@@ -95,12 +94,12 @@ def get_website_response_code():
      req = requests.get(target)
      print('Response Code:' + str(req.status_code))
      print("\nResponse:\n" + req.text)
-     print(": website response program stop at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd("website response program stop at " + date + "on" + platform.system() + "by" + username)
+     print(": website response program stop at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("website response program stop at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
 
 def get_server_info():
-     print(": server info program launch at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd("server info program launch at "+ date + "on" + platform.system() + "by" + username)
+     print(": server info program launch at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("server info program launch at "+ datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
      import socket
      s = socket.socket()
      s.settimeout(2)
@@ -116,8 +115,8 @@ def get_server_info():
      s.send('HEAD / HTTP?1.1\nHost:', target, '\n\n')
      print (s.recv(1024))
      s.close
-     print(": server info program stop at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd("server info program stop at " + date + "on" + platform.system() + "by" + username)
+     print(": server info program stop at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("server info program stop at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
 
 def parse_args():
      """Parse arguments."""
@@ -253,7 +252,7 @@ def exit():
      if exit_opt == 'y':
                     print(colored(": Bye " + username, 'green'))
                     speak_text_cmd("Bye " + username)
-                    print(": Pyrra stop at:", date, "on", platform.system(), "by", username)
+                    print(": Pyrra stop at:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
                     sys.exit()
      elif exit_opt == 'n':
           voice_control_mode()
@@ -297,7 +296,7 @@ def get_full_info():
 def subdomain_scanner():
      import requests
      clear()
-     print(": Subdomain scanner lauch at", date, "on", platform.system(), "by", username)
+     print(": Subdomain scanner lauch at", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
      speak_text_cmd("Subdomain scanner lauch on" + platform.system() + "by" + username)
      engine.runAndWait
      print(colored(": What is the target(eg: google.com): ", 'blue'))
@@ -317,24 +316,24 @@ def subdomain_scanner():
           except requests.ConnectionError:
                pass
           except KeyboardInterrupt:
-               print(": Subdomain scanner stop at ", date, "on", platform.system(), "by", username)
+               print(": Subdomain scanner stop at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
                voice_control_mode()
           else:
                print("[+] Discovered subdomain:", url, )
 
 def portscan():
-     print(": port scan program launch at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd("port scan program launch at " + date + "on" + platform.system() + "by" + username)
+     print(": port scan program launch at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("port scan program launch at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
      os.system('python portscan.py')
      
 def ddos_attack():
-     print(": DDos program launch at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd("DDos program launch at " + date + "on" + platform.system() + "by" + username)
+     print(": DDos program launch at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("DDos program launch at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
      os.system('python ddos.py')
 
 def instagram_attack():
-     print(": Instagram bruteforce program launch at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd("Instagram bruteforce program launch at " + date + "on" + platform.system() + "by" + username)
+     print(": Instagram bruteforce program launch at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("Instagram bruteforce program launch at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
      engine.runAndWait
      print(colored("""
      ################# Instagram Bruteforce Program #################
@@ -372,15 +371,15 @@ def password_tester():
      print(colored(": This program is for password tester, it will print the time taken for crack a password", 'blue'))
      speak_text_cmd("This program is for password tester, it will print the time taken for crack a password")
      clear()
-     print(": Password tester program launch at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd(": password tester program launch at " + date + "on" + platform.system() + "by" + username)
+     print(": Password tester program launch at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd(": password tester program launch at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by" + username)
      print(": starting ")
      speak_text_cmd("starting")
      os.system('python BruteForcer.py')
 
 def hash_crack_menu():
-     print("Hash crack program launch at ", date, "on", platform.system(), "by", username)
-     speak_text_cmd("Hash crack program launch at " + date + "on" + platform.system() + "by"+ username)
+     print("Hash crack program launch at ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
+     speak_text_cmd("Hash crack program launch at " + datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "on" + platform.system() + "by"+ username)
      clear()
      #YOU CAN GENERATE A MD5 PASSWORD HERE --> https://passwordsgenerator.net/md5-hash-generator/
      os.system('python md5_cracker.py')
@@ -402,8 +401,8 @@ def manual_mode():
              ░ ░                                 
 
      """, 'green'))
-     print(": Pyrra manual control mode launch at:", date, "on", platform.system(), "by", username,)
-     speak_text_cmd('Pyrra launch at:' + date +  'on' + platform.system() + 'by'+ username)
+     print(": Pyrra manual control mode launch at:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username,)
+     speak_text_cmd('Pyrra launch at:' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') +  'on' + platform.system() + 'by'+ username)
      print(colored(": Hello " + username, 'green'))
      speak_text_cmd('Hello' + username)
      print(colored(': What can I do for you ?', 'blue'))
@@ -441,7 +440,7 @@ def manual_mode():
                elif 'exit' in menu_opt:
                     print(colored(": Bye " + username, 'blue'))
                     speak_text_cmd("Bye " + username)
-                    print(": Pyrra stop at: ", date, "on", platform.system(), "by", username)
+                    print(": Pyrra stop at: ", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
                     quit()
                elif 'credit' in menu_opt:
                     credit()
@@ -460,7 +459,7 @@ def manual_mode():
                elif 'exit' in menu_opt:
                     print(colored(": Bye " + username, 'blue'))
                     speak_text_cmd("Bye " + username)
-                    print(": Pyrra stop at:", date, "on", platform.system(), "by", username)
+                    print(": Pyrra stop at:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
                     quit()
                elif 'password tester' in menu_opt:
                     password_tester()
@@ -505,8 +504,8 @@ def voice_control_mode():
              ░ ░                                 
 
      """, 'green'))
-     print(": Pyrra launch at:", date, "on", platform.system(), "by", username,)
-     speak_text_cmd('Pyrra launch at:' + date +  'on'+ platform.system() + 'by'+ username)
+     print(": Pyrra launch at:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username,)
+     speak_text_cmd('Pyrra launch at:' + datetime.now().strftime('%Y-%m-%d %H:%M:%S') +  'on'+ platform.system() + 'by'+ username)
      print(colored(": Hello " + username, 'blue'))
      speak_text_cmd('Hello' + username)
      print(colored(': What can I do for you ?', 'blue'))
@@ -538,7 +537,7 @@ def voice_control_mode():
                elif 'exit' in voice_note:
                     print(colored(": Bye " + username, 'blue'))
                     speak_text_cmd("Bye " + username)
-                    print(": Pyrra stop at:", date, "on", platform.system(), "by", username)
+                    print(": Pyrra stop at:", datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "on", platform.system(), "by", username)
                     quit()
                elif 'credit' in voice_note:
                     credit()
