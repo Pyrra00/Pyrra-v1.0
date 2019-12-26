@@ -1,6 +1,6 @@
 A python voice control hacking assistant
 
-Hello, this script is a voice control hacking assistant using python speech_recognition, pyttsx and other module. If you find out any bugs, want to participe and developpe this project, or you have any advice, don't hesitate to contact me in private at pyrra@mail.com.
+Hello, this script is a voice control hacking assistant using python speech_recognition, pyttsx and other module. If you find out any bugs, want to participe and developpe this project, or you have any advice, don't hesitate to contact me in private at pyrra00@protonmail.com.
 
 New !!
 You can now do facebook and instagram account bruteforce, by saying 'facebook bruteforce' or 'instagram bruteforce' !!
