@@ -42,6 +42,16 @@ engine.setProperty('voice','HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\
 rate = engine.getProperty('rate')
 engine.setProperty('rate', rate-15)
 
+def clear():
+     if platform.system() == 'Windows':
+          os.system('cls')
+     elif platform.system() == 'Linux':
+          os.system('clear')
+     else:
+          print(colored("Not supported on you device yet, please launch the program on linux or windows", 'red'))
+          time.sleep(3)
+          sys.exit()
+
 def speak_text_cmd(cmd):
     engine.say(cmd)
     engine.runAndWait()
@@ -252,15 +262,15 @@ def get_full_info():
 
 def subdomain_scanner():
      import requests
-     os.system('cls')
-     print("Subdomain scanner lauch at", date, "on", platform.system(), "by", username)
+     clear()
+     print(": Subdomain scanner lauch at", date, "on", platform.system(), "by", username)
      speak_text_cmd("Subdomain scanner lauch at" + date + "on" + platform.system() + "by" + username)
-     print(colored("What is the target(eg: google.com): ", 'blue'))
+     print(colored(": What is the target(eg: google.com): ", 'blue'))
      speak_text_cmd("What is the target ?")
-     domain = input()
-     print(colored("Domain set to " + domain, 'blue'))
+     domain = input(": ")
+     print(colored(": Domain set to " + domain, 'blue'))
      speak_text_cmd("Domain set to " + domain)
-     print(colored("starting...", 'blue'))
+     print(colored(": starting...", 'blue'))
      speak_text_cmd("starting")
      file = open("subdomains.txt")
      content = file.read()
@@ -274,7 +284,12 @@ def subdomain_scanner():
           else:
                print("[+] Discovered subdomain:", url)
 
-
+def portscan():
+     print(colored("Launching port scanner program...", 'green'))
+     speak_text_cmd("Launching port scanner program")
+     print(colored("Port Scanner Program", 'blue'))
+     os.system('python portscan.py')
+     
 def ddos_attack():
      os.system('python ddos.py')
 
@@ -308,14 +323,28 @@ def credit():
      #                DDos script 1: Memcrashed ddos                   #                             
      #                        Use python 3.8                           #
      #   Speech recognition, pyttsx3, socket and more python module    #
-     #              Contact at pyrra@mail.com for advice               #
+     #              Contact at pyrra00@prtonmail.com for advice               #
      #              and be part of the developpers team                #
      #       See my github page for more info(just search Pyrra)       #
      # #################################################################""", 'blue'))
      
+def password_tester():
+     print(colored(": This program is for password tester, it will print the time taken for crack a password", 'blue'))
+     speak_text_cmd("This program is for password tester, it will print the time taken for crack a password")
+     print(": starting ")
+     speak_text_cmd("starting")
+     os.system('python BruteForcer.py')
+
+def hash_crack_menu():
+     print(colored(": Lauching hash crack Program", 'green'))
+     speak_text_cmd("Lauching hash crack Program")
+     clear()
+     #YOU CAN GENERATE A MD5 PASSWORD HERE --> https://passwordsgenerator.net/md5-hash-generator/
+     os.system('python md5_cracker.py')
+
 
 def manual_mode():
-     os.system('cls')
+     clear()
      print(colored("""
 
       ██▓███ ▓██   ██▓ ██▀███   ██▀███   ▄▄▄      
@@ -337,7 +366,7 @@ def manual_mode():
      print(colored(': What can I do for you ?', 'blue'))
      speak_text_cmd('What can I do for you ?')
      while True:
-          menu_opt = input(':')
+          menu_opt = input(': ')
           if 'get server ip' in menu_opt:
                get_server_ip()
                continue
@@ -384,11 +413,24 @@ def manual_mode():
           elif 'subdomain scanner' in menu_opt:
                subdomain_scanner()
                continue
-
+          elif 'exit' in menu_opt:
+               print(colored(": Bye " + username, 'blue'))
+               speak_text_cmd("Bye " + username)
+               print(": Pyrra stop at:", date, "on", platform.system(), "by", username)
+               quit()
+          elif 'password tester' in menu_opt:
+               password_tester()
+               continue
+          elif 'hash crack' in menu_opt:
+               hash_crack_menu()
+               continue
+          else:
+               print(colored("Error: no command found", 'red'))
+               speak_text_cmd("Error, no command found")
 
 def read_voice_cmd():
    voice_text = ''
-   print(colored('Listening...', 'red'))
+   print(colored(': Listening...', 'red'))
    with sr.Microphone() as source:
        audio = speech.listen(source)
    try:
@@ -465,6 +507,12 @@ def voice_control_mode():
           elif 'subdomain scanner' in voice_note:
                subdomain_scanner()
                continue
+          elif 'password tester' in voice_note:
+               password_tester()
+               continue
+          elif 'hash crack' in voice_note:
+               hash_crack_menu()
+               continue
           else:
                print(colored(": No command detected, do you want to enter manual control mode ? y/n", 'blue'))
                speak_text_cmd("No command detect detected, do you want to enter manual control mode ? yes or no")
@@ -478,5 +526,5 @@ def voice_control_mode():
                     speak_text_cmd('Invalid option')
                     continue
           
-
-voice_control_mode()
+if __name__ == '__main__':
+     voice_control_mode()
